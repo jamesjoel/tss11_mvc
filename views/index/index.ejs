@@ -1,0 +1,84 @@
+
+<div class="container" ng-app="myApp" ng-controller="myCtrl" ng-init="getData()">
+<div class="jumbotron">
+	<h2 class="text-center">Welcome !!! </h2>
+	<button ng-click="newData={}" data-target="#addModal" data-toggle="modal" class="btn btn-success">Add New</button>
+
+</div>
+<table class="table table-hover table-bordered">
+	<tr>
+		<th>S.No.</th>
+		<th>Name</th>
+		<th>Age</th>
+		<th>Fee</th>
+		<th>Delete</th>
+		<th>Update</th>
+	</tr>
+	<tr ng-repeat="x in allData">
+		<td ng-bind="$index+1"></td>
+		<td ng-bind="x.name"></td>
+		<td ng-bind="x.age"></td>
+		<td ng-bind="x.fee"></td>
+		<td><button ng-click="askDelete(x)" data-target="#delModal" data-toggle="modal"  class="btn btn-danger">Delete</button></td>
+		<td><button ng-click="askUpdate(x)" data-target="#addModal" data-toggle="modal" class="btn btn-info">Update</button></td>
+	</tr>
+</table>
+<div class="modal fade" id="addModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>{{ newData._id ? "Update" : "Add New" }} Student</h3>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Full Name</label>
+					<input type="text" ng-model="newData.name" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Age</label>
+					<input type="text" ng-model="newData.age" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Fee</label>
+					<input type="text" ng-model="newData.fee" class="form-control">
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" data-dismiss="modal">Close</button>
+				<button ng-click="add()" class="btn btn-primary" data-dismiss="modal">{{ newData._id ? "Update" : "Add" }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="modal fade" id="delModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3>Delete</h3>
+			</div>
+			<div class="modal-body">
+				<p>Are Sure Want to Delete This <b>{{ selectedObj.name }}</b></p>
+				
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" data-dismiss="modal">Close</button>
+				<button ng-click="delete()" class="btn btn-primary" data-dismiss="modal">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
